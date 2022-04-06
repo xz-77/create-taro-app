@@ -2,13 +2,22 @@
   "name": "create-taro-app",
   "version": "1.0.0",
   "private": true,
-  "description": "create-taro-app",
+  "description": "基于Taro的小程序脚手架",
   "templateInfo": {
     "name": "default",
     "typescript": true,
     "css": "less"
   },
+  "sideEffects": [
+    "**/*.css",
+    "**/*.less",
+    "**/*.scss"
+  ],
   "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
+    "release": "standard-version",
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -36,29 +45,67 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
+    "@reduxjs/toolkit": "^1.8.1",
     "@tarojs/components": "3.4.3",
-    "@tarojs/runtime": "3.4.3",
-    "@tarojs/taro": "3.4.3",
     "@tarojs/plugin-framework-react": "3.4.3",
     "@tarojs/react": "3.4.3",
+    "@tarojs/runtime": "3.4.3",
+    "@tarojs/taro": "3.4.3",
+    "classnames": "^2.3.1",
+    "dayjs": "^1.11.0",
+    "lodash": "^4.17.21",
+    "numeral": "^2.0.6",
+    "qs": "6.9.3",
+    "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react": "^17.0.0"
+    "sentry-miniapp": "^0.11.1"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.6",
-    "@types/react": "^17.0.2",
-    "@tarojs/mini-runner": "3.4.3",
     "@babel/core": "^7.8.0",
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@tarojs/mini-runner": "3.4.3",
     "@tarojs/webpack-runner": "3.4.3",
-    "babel-preset-taro": "3.4.3",
-    "eslint-config-taro": "3.4.3",
-    "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.8.2",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "stylelint": "^14.4.0",
-    "@typescript-eslint/parser": "^4.15.1",
+    "@types/classnames": "^2.3.1",
+    "@types/numeral": "^2.0.2",
+    "@types/qs": "^6.9.7",
+    "@types/react": "^17.0.2",
+    "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
-    "typescript": "^4.1.0"
+    "@typescript-eslint/parser": "^4.15.1",
+    "babel-preset-taro": "3.4.3",
+    "commitizen": "^4.2.4",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.4.3",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "standard-version": "^9.3.2",
+    "stylelint": "^14.4.0",
+    "typescript": "^4.1.0",
+    "verify-fabric": "^1.1.4"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "src/**/*.css": [
+      "stylelint --fix --allow-empty-input"
+    ],
+    "src/**/*.scss": [
+      "stylelint --syntax=scss --fix"
+    ],
+    "src/**/*.less": [
+      "stylelint --syntax=less --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
