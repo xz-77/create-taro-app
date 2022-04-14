@@ -24,7 +24,9 @@ const config = {
     postcss: {
       pxtransform: {
         enable: true,
-        config: {},
+        config: {
+          onePxTransform: false, // 设置 1px 是否需要被转换
+        },
       },
       url: {
         enable: true,
