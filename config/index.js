@@ -66,6 +66,10 @@ const config = {
         },
       });
     },
+    //优化主包的体积大小
+    optimizeMainPackage: {
+      enable: true,
+    },
   },
   h5: {
     publicPath: '/',
